@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Shere Punjab Restaurant | Kitchen</title>
+<title>Shere Punjab | Kitchen</title>
 
 <style>
 
@@ -28,8 +30,6 @@ body{
   font-family:Arial,sans-serif;
 }
 
-/* HEADER */
-
 header{
   background:var(--deep);
   color:white;
@@ -44,7 +44,7 @@ header h1{
   font-family:Georgia,serif;
 }
 
-.status{
+.badge{
   background:var(--gold);
   color:var(--deep);
   padding:10px 18px;
@@ -52,40 +52,35 @@ header h1{
   font-weight:bold;
 }
 
-/* MAIN */
-
 .container{
   max-width:1200px;
   margin:auto;
-  padding:35px 20px;
+  padding:30px 20px;
 }
 
-.intro{
+.info{
   background:white;
-  border:1px solid #ead7bb;
+  padding:22px;
   border-radius:20px;
-  padding:25px;
-  margin-bottom:30px;
+  border:1px solid #ead7bb;
+  margin-bottom:25px;
 }
 
-.intro h2{
+.info h2{
   color:var(--maroon);
   margin-top:0;
 }
 
-.intro p{
+.info p{
   color:var(--muted);
-  line-height:1.6;
 }
-
-/* ORDERS */
 
 .orders{
   display:grid;
   gap:20px;
 }
 
-.order-card{
+.order{
   background:white;
   border:1px solid #ead7bb;
   border-radius:20px;
@@ -93,90 +88,90 @@ header h1{
   box-shadow:0 8px 25px #4d251414;
 }
 
-.order-header{
+.order-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
   flex-wrap:wrap;
   gap:15px;
-  border-bottom:2px solid #ead7bb;
   padding-bottom:15px;
+  border-bottom:2px solid #ead7bb;
 }
 
 .order-number{
   color:var(--maroon);
-  font-size:1.8rem;
+  font-size:1.9rem;
   font-weight:bold;
 }
 
 .table{
-  background:#fff8eb;
+  background:var(--cream);
   color:var(--maroon);
   padding:10px 16px;
-  border-radius:25px;
+  border-radius:30px;
   font-weight:bold;
-}
-
-.items{
-  margin:20px 0;
 }
 
 .item{
   display:flex;
   justify-content:space-between;
-  padding:14px 0;
+  padding:15px 0;
   border-bottom:1px dashed #d9c3a7;
-  font-size:17px;
 }
 
-.item:last-child{
-  border-bottom:0;
+.total{
+  text-align:right;
+  color:var(--maroon);
+  font-size:1.25rem;
+  font-weight:bold;
+  margin-top:18px;
 }
 
-.prepare-btn{
-  width:100%;
-  padding:16px;
-  background:var(--maroon);
-  color:white;
+.status{
+  margin-top:15px;
+  padding:12px;
+  border-radius:10px;
+  background:#fff8eb;
+  font-weight:bold;
+}
+
+.buttons{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+button{
   border:0;
+  padding:13px 20px;
   border-radius:30px;
   font-weight:bold;
-  font-size:16px;
   cursor:pointer;
 }
 
-.prepare-btn:hover{
-  opacity:.85;
-}
-
-.ready-btn{
-  width:100%;
-  padding:16px;
-  margin-top:10px;
+.start{
   background:var(--gold);
   color:var(--deep);
-  border:0;
-  border-radius:30px;
-  font-weight:bold;
-  font-size:16px;
-  cursor:pointer;
 }
 
-.ready-btn:hover{
-  opacity:.85;
+.ready{
+  background:#2f6b3a;
+  color:white;
 }
 
-/* EMPTY */
+.delivered{
+  background:var(--maroon);
+  color:white;
+}
 
 .empty{
-  text-align:center;
   background:white;
   padding:50px 20px;
+  text-align:center;
   border-radius:20px;
   color:var(--muted);
 }
-
-/* MOBILE */
 
 @media(max-width:600px){
 
@@ -187,7 +182,7 @@ header h1{
   }
 
   .item{
-    font-size:15px;
+    gap:15px;
   }
 
 }
@@ -196,7 +191,9 @@ header h1{
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -204,8 +201,8 @@ header h1{
 Shere Punjab Restaurant
 </h1>
 
-<div class="status">
-KITCHEN
+<div class="badge">
+👨‍🍳 KITCHEN
 </div>
 
 </header>
@@ -213,147 +210,289 @@ KITCHEN
 
 <div class="container">
 
-<div class="intro">
+
+<div class="info">
 
 <h2>
-👨‍🍳 Kitchen Orders
+🍳 Kitchen Orders
 </h2>
 
 <p>
-Orders received from customers will appear here.
-Prepare the food and send it to the customer's table.
+Orders sent from the counter will appear here.
+Prepare the food and mark the order as ready.
 </p>
 
 </div>
 
 
-<div id="orders" class="orders">
+<div
+id="orders"
+class="orders"
+>
 
 <div class="empty">
 
 <h2>
-No orders yet
+Waiting for orders...
 </h2>
 
 <p>
-Waiting for orders...
+Orders will appear automatically.
 </p>
 
 </div>
 
 </div>
 
+
 </div>
 
 
-<script>
-
-/*
-  TEMPORARY KITCHEN DEMO
-
-  These orders are examples so you can
-  see how the kitchen screen will look.
-
-  Later, server.js will connect the
-  customer page, counter page and
-  kitchen page together.
-*/
+<script type="module">
 
 
-let kitchenOrders = [
+/* FIREBASE */
 
-{
-  number:"SP1024",
-  table:"12",
-
-  items:[
-    {
-      name:"Samosa",
-      quantity:2
-    },
-
-    {
-      name:"Kachori",
-      quantity:1
-    },
-
-    {
-      name:"Kaju Katli",
-      quantity:1
-    }
-  ]
-},
-
-{
-  number:"SP5831",
-  table:"7",
-
-  items:[
-    {
-      name:"Samosa Half",
-      quantity:2
-    },
-
-    {
-      name:"Santra Barfi",
-      quantity:1
-    }
-  ]
+import {
+  initializeApp
 }
-
-];
-
-
-/* DISPLAY ORDERS */
-
-function displayOrders(){
-
-  const container =
-    document.getElementById("orders");
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
-  if(kitchenOrders.length === 0){
-
-    container.innerHTML = `
-
-      <div class="empty">
-
-        <h2>No orders yet</h2>
-
-        <p>
-        Waiting for orders...
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
+import {
+  getFirestore,
+  collection,
+  onSnapshot,
+  query,
+  orderBy,
+  doc,
+  updateDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-  container.innerHTML = "";
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyCkcNYnZdMXa0Zbg5YGOLB-e1pDRXCPQxg",
+
+  authDomain:
+  "shere-punjab-ordering.firebaseapp.com",
+
+  projectId:
+  "shere-punjab-ordering",
+
+  storageBucket:
+  "shere-punjab-ordering.firebasestorage.app",
+
+  messagingSenderId:
+  "930249634762",
+
+  appId:
+  "1:930249634762:web:cea7dd0848bd39e9a3d533"
+
+};
 
 
-  kitchenOrders.forEach(function(order){
+/* INITIALIZE */
 
-    let itemsHTML = "";
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
 
 
-    order.items.forEach(function(item){
+/* ORDERS */
 
-      itemsHTML += `
+const ordersRef =
+collection(db,"orders");
 
-        <div class="item">
 
-          <strong>
-            ${item.name}
-          </strong>
+const ordersQuery =
+query(
+  ordersRef,
+  orderBy("createdAt","desc")
+);
 
-          <span>
-            × ${item.quantity}
-          </span>
+
+/* LIVE ORDERS */
+
+onSnapshot(
+  ordersQuery,
+
+  function(snapshot){
+
+    const container =
+      document.getElementById("orders");
+
+
+    let foundOrders = false;
+
+    container.innerHTML = "";
+
+
+    snapshot.forEach(function(docSnap){
+
+      const order =
+        docSnap.data();
+
+
+      const id =
+        docSnap.id;
+
+
+      /*
+       Only show orders that
+       have been sent to kitchen.
+      */
+
+      if(
+        order.status !== "preparing" &&
+        order.status !== "ready"
+      ){
+
+        return;
+
+      }
+
+
+      foundOrders = true;
+
+
+      let itemsHTML = "";
+
+
+      order.items.forEach(function(item){
+
+        itemsHTML += `
+
+          <div class="item">
+
+            <span>
+
+              <strong>
+                ${item.quantity} ×
+              </strong>
+
+              ${item.name}
+
+            </span>
+
+            <strong>
+              ₹${item.price * item.quantity}
+            </strong>
+
+          </div>
+
+        `;
+
+      });
+
+
+      let statusText =
+        "🍳 Preparing";
+
+
+      if(order.status === "ready"){
+
+        statusText =
+          "✅ READY FOR DELIVERY";
+
+      }
+
+
+      container.innerHTML += `
+
+        <div class="order">
+
+          <div class="order-head">
+
+            <div>
+
+              <div>
+                ORDER NUMBER
+              </div>
+
+              <div class="order-number">
+
+                ${order.orderNumber}
+
+              </div>
+
+            </div>
+
+
+            <div class="table">
+
+              🪑 Table ${order.tableNumber}
+
+            </div>
+
+          </div>
+
+
+          <div style="margin-top:20px;">
+
+            ${itemsHTML}
+
+          </div>
+
+
+          <div class="total">
+
+            Total: ₹${order.total}
+
+          </div>
+
+
+          <div class="status">
+
+            ${statusText}
+
+          </div>
+
+
+          <div class="buttons">
+
+            ${
+              order.status === "preparing"
+
+              ?
+
+              `
+
+              <button
+                class="ready"
+                onclick="markReady('${id}')">
+
+                ✅ FOOD READY
+
+              </button>
+
+              `
+
+              :
+
+              `
+
+              <button
+                class="delivered"
+                onclick="markDelivered('${id}')">
+
+                🍽️ DELIVERED TO TABLE
+
+              </button>
+
+              `
+
+            }
+
+          </div>
 
         </div>
 
@@ -362,92 +501,110 @@ function displayOrders(){
     });
 
 
-    container.innerHTML += `
+    if(!foundOrders){
 
-      <div class="order-card">
+      container.innerHTML = `
 
-        <div class="order-header">
+        <div class="empty">
 
-          <div>
+          <h2>
+            👨‍🍳 Kitchen is clear
+          </h2>
 
-            <div>
-              ORDER NUMBER
-            </div>
-
-            <div class="order-number">
-              ${order.number}
-            </div>
-
-          </div>
-
-          <div class="table">
-            🪑 Table ${order.table}
-          </div>
+          <p>
+            Waiting for the next order...
+          </p>
 
         </div>
 
+      `;
 
-        <div class="items">
+    }
 
-          ${itemsHTML}
-
-        </div>
-
-
-        <button
-          class="prepare-btn"
-          onclick="startPreparing('${order.number}')">
-
-          👨‍🍳 START PREPARING
-
-        </button>
+  },
 
 
-        <button
-          class="ready-btn"
-          onclick="markReady('${order.number}')">
+  function(error){
 
-          ✅ FOOD READY
+    console.error(error);
 
-        </button>
+    document.getElementById("orders").innerHTML = `
+
+      <div class="empty">
+
+        <h2>
+          ⚠️ Unable to load orders
+        </h2>
+
+        <p>
+          Check Firebase Firestore rules.
+        </p>
 
       </div>
 
     `;
 
-  });
+  }
 
-}
-
-
-/* START PREPARING */
-
-function startPreparing(number){
-
-  alert(
-    "Kitchen started preparing Order " +
-    number
-  );
-
-}
+);
 
 
-/* FOOD READY */
+/* MARK READY */
 
-function markReady(number){
+window.markReady =
+async function(id){
 
-  alert(
-    "Order " +
-    number +
-    " is ready. Deliver it to the table."
-  );
+  try{
 
-}
+    await updateDoc(
+      doc(db,"orders",id),
+      {
+        status:"ready"
+      }
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Could not update order."
+    );
+
+  }
+
+};
 
 
-displayOrders();
+/* DELIVERED */
+
+window.markDelivered =
+async function(id){
+
+  try{
+
+    await updateDoc(
+      doc(db,"orders",id),
+      {
+        status:"delivered"
+      }
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Could not update order."
+    );
+
+  }
+
+};
+
 
 </script>
+
 
 </body>
 
