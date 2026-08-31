@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Shere Punjab Restaurant | Counter</title>
+<title>Shere Punjab | Counter</title>
 
 <style>
 
@@ -23,12 +24,10 @@
 
 body{
   margin:0;
-  font-family:Arial,sans-serif;
   background:var(--cream);
   color:var(--ink);
+  font-family:Arial,sans-serif;
 }
-
-/* HEADER */
 
 header{
   background:var(--deep);
@@ -45,49 +44,43 @@ header h1{
   font-family:Georgia,serif;
 }
 
-.status{
-  background:#d9a441;
-  color:#260d0d;
+.badge{
+  background:var(--gold);
+  color:var(--deep);
   padding:10px 18px;
   border-radius:30px;
   font-weight:bold;
 }
 
-/* MAIN */
-
 .container{
   max-width:1200px;
   margin:auto;
-  padding:35px 20px;
+  padding:30px 20px;
 }
 
-h2{
-  color:var(--maroon);
-}
-
-/* INFO */
-
-.info{
+.top{
   background:white;
   border:1px solid #ead7bb;
-  border-radius:18px;
-  padding:20px;
+  border-radius:20px;
+  padding:22px;
   margin-bottom:25px;
 }
 
-.info p{
-  color:var(--muted);
-  line-height:1.6;
+.top h2{
+  color:var(--maroon);
+  margin-top:0;
 }
 
-/* ORDERS */
+.top p{
+  color:var(--muted);
+}
 
 .orders{
   display:grid;
   gap:20px;
 }
 
-.order-card{
+.order{
   background:white;
   border:1px solid #ead7bb;
   border-radius:20px;
@@ -95,58 +88,66 @@ h2{
   box-shadow:0 8px 25px #4d251414;
 }
 
-.order-header{
+.order-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:15px;
   flex-wrap:wrap;
-  border-bottom:1px dashed #d9c3a7;
+  gap:15px;
+  border-bottom:2px solid #ead7bb;
   padding-bottom:15px;
 }
 
 .order-number{
+  color:var(--maroon);
   font-size:1.8rem;
   font-weight:bold;
-  color:var(--maroon);
 }
 
-.table-number{
-  background:#fff8eb;
+.table{
+  background:var(--cream);
   color:var(--maroon);
-  padding:9px 15px;
-  border-radius:20px;
+  padding:10px 16px;
+  border-radius:30px;
   font-weight:bold;
 }
 
-.order-items{
-  margin:20px 0;
-}
-
-.order-item{
+.item{
   display:flex;
   justify-content:space-between;
-  padding:12px 0;
-  border-bottom:1px solid #f0e4d2;
+  padding:13px 0;
+  border-bottom:1px dashed #d9c3a7;
 }
 
 .total{
   text-align:right;
   color:var(--maroon);
-  font-size:1.2rem;
+  font-size:1.3rem;
   font-weight:bold;
-  margin-top:15px;
+  margin-top:18px;
 }
 
-/* BUTTON */
+.payment{
+  margin-top:15px;
+  padding:12px;
+  border-radius:10px;
+  background:#fff8eb;
+  font-weight:bold;
+}
+
+.buttons{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
 
 button{
   border:0;
   padding:13px 20px;
   border-radius:30px;
-  cursor:pointer;
   font-weight:bold;
-  font-size:15px;
+  cursor:pointer;
 }
 
 .accept{
@@ -154,31 +155,23 @@ button{
   color:var(--deep);
 }
 
-.ready{
-  background:var(--maroon);
-  color:white;
-}
-
 .paid{
   background:#2f6b3a;
   color:white;
 }
 
-button:hover{
-  opacity:.85;
+.kitchen{
+  background:var(--maroon);
+  color:white;
 }
-
-/* EMPTY */
 
 .empty{
   text-align:center;
   background:white;
-  border-radius:20px;
   padding:50px 20px;
+  border-radius:20px;
   color:var(--muted);
 }
-
-/* MOBILE */
 
 @media(max-width:600px){
 
@@ -187,9 +180,8 @@ button:hover{
     text-align:center;
   }
 
-  .order-item{
-    flex-direction:column;
-    gap:5px;
+  .item{
+    gap:15px;
   }
 
 }
@@ -200,13 +192,14 @@ button:hover{
 
 <body>
 
+
 <header>
 
 <h1>
 Shere Punjab Restaurant
 </h1>
 
-<div class="status">
+<div class="badge">
 COUNTER
 </div>
 
@@ -215,146 +208,288 @@ COUNTER
 
 <div class="container">
 
-<div class="info">
+
+<div class="top">
 
 <h2>
-📋 Counter Orders
+📋 Live Customer Orders
 </h2>
 
 <p>
-Orders placed by customers will appear here.
-The customer pays at the counter before eating.
+Orders placed by customers will appear here automatically.
+Customers pay at the counter before eating.
 </p>
 
 </div>
 
 
-<div id="orders" class="orders">
+<div
+id="orders"
+class="orders"
+>
 
 <div class="empty">
 
 <h2>
-No orders yet
+Waiting for orders...
 </h2>
 
 <p>
-Waiting for customer orders...
+New customer orders will appear automatically.
 </p>
 
 </div>
 
 </div>
 
+
 </div>
 
 
-<script>
-
-/*
-  TEMPORARY COUNTER SYSTEM
-
-  This page currently demonstrates
-  the counter interface.
-
-  In the next step we will connect
-  customer.html and counter.html
-  using a server.
-*/
+<script type="module">
 
 
-let demoOrders = [
+/* FIREBASE */
 
-{
-  number:"SP1024",
-  table:"12",
-
-  items:[
-    {
-      name:"Samosa",
-      price:40
-    },
-    {
-      name:"Kachori",
-      price:40
-    },
-    {
-      name:"Kaju Katli 1 kg",
-      price:1000
-    }
-  ],
-
-  total:1080
-},
-
-{
-  number:"SP5831",
-  table:"7",
-
-  items:[
-    {
-      name:"Samosa Half",
-      price:25
-    },
-    {
-      name:"Santra Barfi 1 kg",
-      price:700
-    }
-  ],
-
-  total:725
+import {
+  initializeApp
 }
-
-];
-
-
-function displayOrders(){
-
-  const container =
-    document.getElementById("orders");
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
-  if(demoOrders.length === 0){
-
-    container.innerHTML = `
-
-      <div class="empty">
-
-        <h2>No orders yet</h2>
-
-        <p>
-        Waiting for customer orders...
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
+import {
+  getFirestore,
+  collection,
+  onSnapshot,
+  query,
+  orderBy,
+  doc,
+  updateDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-  container.innerHTML = "";
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyCkcNYnZdMXa0Zbg5YGOLB-e1pDRXCPQxg",
+
+  authDomain:
+  "shere-punjab-ordering.firebaseapp.com",
+
+  projectId:
+  "shere-punjab-ordering",
+
+  storageBucket:
+  "shere-punjab-ordering.firebasestorage.app",
+
+  messagingSenderId:
+  "930249634762",
+
+  appId:
+  "1:930249634762:web:cea7dd0848bd39e9a3d533"
+
+};
 
 
-  demoOrders.forEach(function(order){
+/* START FIREBASE */
 
-    let itemsHTML = "";
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
 
 
-    order.items.forEach(function(item){
+/* ORDERS */
 
-      itemsHTML += `
+const ordersRef =
+collection(db,"orders");
 
-        <div class="order-item">
 
-          <span>
-            ${item.name}
-          </span>
+const ordersQuery =
+query(
+  ordersRef,
+  orderBy("createdAt","desc")
+);
 
-          <strong>
-            ₹${item.price}
-          </strong>
+
+/* LIVE LISTENER */
+
+onSnapshot(
+  ordersQuery,
+  function(snapshot){
+
+    const container =
+      document.getElementById("orders");
+
+
+    if(snapshot.empty){
+
+      container.innerHTML = `
+
+        <div class="empty">
+
+          <h2>
+            Waiting for orders...
+          </h2>
+
+          <p>
+            New customer orders will appear automatically.
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    snapshot.forEach(function(docSnap){
+
+      const order =
+        docSnap.data();
+
+
+      const id =
+        docSnap.id;
+
+
+      let itemsHTML = "";
+
+
+      order.items.forEach(function(item){
+
+        const itemTotal =
+          item.price * item.quantity;
+
+
+        itemsHTML += `
+
+          <div class="item">
+
+            <span>
+
+              ${item.name}
+
+              × ${item.quantity}
+
+            </span>
+
+            <strong>
+
+              ₹${itemTotal}
+
+            </strong>
+
+          </div>
+
+        `;
+
+      });
+
+
+      let paymentText =
+        "💰 Payment Pending";
+
+
+      if(order.payment === "paid"){
+
+        paymentText =
+          "✅ Payment Received";
+
+      }
+
+
+      container.innerHTML += `
+
+        <div class="order">
+
+          <div class="order-head">
+
+            <div>
+
+              <div>
+                ORDER NUMBER
+              </div>
+
+              <div class="order-number">
+
+                ${order.orderNumber}
+
+              </div>
+
+            </div>
+
+
+            <div class="table">
+
+              🪑 Table ${order.tableNumber}
+
+            </div>
+
+          </div>
+
+
+          <div style="margin-top:20px;">
+
+            ${itemsHTML}
+
+          </div>
+
+
+          <div class="total">
+
+            Total: ₹${order.total}
+
+          </div>
+
+
+          <div class="payment">
+
+            ${paymentText}
+
+          </div>
+
+
+          <div class="buttons">
+
+            <button
+              class="accept"
+              onclick="acceptOrder('${id}')">
+
+              ✓ Accept Order
+
+            </button>
+
+
+            <button
+              class="paid"
+              onclick="markPaid('${id}')">
+
+              💰 Payment Received
+
+            </button>
+
+
+            <button
+              class="kitchen"
+              onclick="sendKitchen('${id}')">
+
+              👨‍🍳 Send to Kitchen
+
+            </button>
+
+          </div>
 
         </div>
 
@@ -362,121 +497,85 @@ function displayOrders(){
 
     });
 
+  },
 
-    container.innerHTML += `
+  function(error){
 
-      <div class="order-card">
+    console.error(error);
 
-        <div class="order-header">
+    document.getElementById("orders").innerHTML = `
 
-          <div>
+      <div class="empty">
 
-            <div>
-              ORDER
-            </div>
+        <h2>
+          ⚠️ Unable to load orders
+        </h2>
 
-            <div class="order-number">
-              ${order.number}
-            </div>
-
-          </div>
-
-          <div class="table-number">
-            🪑 Table ${order.table}
-          </div>
-
-        </div>
-
-
-        <div class="order-items">
-
-          ${itemsHTML}
-
-        </div>
-
-
-        <div class="total">
-
-          Total:
-          ₹${order.total}
-
-        </div>
-
-
-        <br>
-
-
-        <button
-          class="accept"
-          onclick="acceptOrder('${order.number}')">
-
-          Accept Order
-
-        </button>
-
-
-        <button
-          class="ready"
-          onclick="readyOrder('${order.number}')">
-
-          Mark Ready
-
-        </button>
-
-
-        <button
-          class="paid"
-          onclick="paidOrder('${order.number}')">
-
-          Payment Received
-
-        </button>
+        <p>
+          Check your Firebase connection and Firestore rules.
+        </p>
 
       </div>
 
     `;
 
-  });
+  }
 
-}
+);
 
 
-function acceptOrder(number){
+/* ACCEPT */
 
-  alert(
-    "Order " +
-    number +
-    " accepted."
+window.acceptOrder =
+async function(id){
+
+  await updateDoc(
+    doc(db,"orders",id),
+    {
+      status:"accepted"
+    }
   );
 
-}
+};
 
 
-function readyOrder(number){
+/* PAYMENT */
 
-  alert(
-    "Order " +
-    number +
-    " is ready for delivery to the table."
+window.markPaid =
+async function(id){
+
+  await updateDoc(
+    doc(db,"orders",id),
+    {
+      payment:"paid"
+    }
   );
 
-}
+};
 
 
-function paidOrder(number){
+/* SEND TO KITCHEN */
 
-  alert(
-    "Payment received for order " +
-    number +
-    "."
+window.sendKitchen =
+async function(id){
+
+  await updateDoc(
+    doc(db,"orders",id),
+    {
+      status:"preparing"
+    }
   );
 
-}
+  alert(
+    "Order sent to kitchen!"
+  );
 
+};
 
-displayOrders();
 
 </script>
 
+
 </body>
+
 </html>
