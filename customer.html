@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -15,63 +16,92 @@
   --cream:#fff8eb;
   --ink:#2a1a16;
   --muted:#715e56;
+  --white:#ffffff;
 }
 
 *{
   box-sizing:border-box;
 }
 
-body{
-  margin:0;
-  font-family:Georgia,"Times New Roman",serif;
-  color:var(--ink);
-  background:var(--cream);
+html{
+  scroll-behavior:smooth;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:Arial,sans-serif;
 }
 
 /* HEADER */
 
 header{
-  background:#260d0d;
+  background:var(--deep);
   color:white;
   text-align:center;
-  padding:35px 20px;
+  padding:30px 20px;
 }
 
 header h1{
   margin:0;
-  font-size:2.5rem;
+  font-family:Georgia,serif;
+  font-size:2.4rem;
 }
 
 header p{
   color:#ead9cc;
-  font-family:Arial,sans-serif;
 }
 
-/* MAIN */
+/* TABLE BOX */
 
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:35px 20px;
+.table-box{
+  max-width:600px;
+  margin:25px auto;
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  border:1px solid #ead7bb;
+  box-shadow:0 8px 25px #4d251414;
 }
 
-.section-title{
-  text-align:center;
-  color:var(--deep);
-  margin-bottom:30px;
+.table-box h2{
+  margin-top:0;
+  color:var(--maroon);
+}
+
+.table-box input{
+  width:100%;
+  padding:14px;
+  border:1px solid #d9c3a7;
+  border-radius:12px;
+  font-size:16px;
+  margin-top:8px;
 }
 
 /* MENU */
 
-.menu-grid{
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+.section-title{
+  text-align:center;
+  margin:35px 0 25px;
+}
+
+.section-title h2{
+  font-family:Georgia,serif;
+  color:var(--deep);
+  font-size:2.3rem;
+}
+
+.food-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:25px;
+  gap:22px;
 }
 
 .food-card{
@@ -94,13 +124,14 @@ header p{
 }
 
 .food-info h3{
-  margin:0 0 8px;
   color:var(--maroon);
+  margin-top:0;
+  font-family:Georgia,serif;
 }
 
 .food-info p{
-  font-family:Arial,sans-serif;
   color:var(--muted);
+  line-height:1.5;
 }
 
 .price{
@@ -109,58 +140,54 @@ header p{
   margin:12px 0;
 }
 
-/* BUTTON */
-
-button{
-  border:0;
-  cursor:pointer;
-  font-family:Arial,sans-serif;
-  font-weight:bold;
-}
-
-.buy-btn{
-  background:var(--gold);
-  color:#28110d;
-  padding:12px 20px;
-  border-radius:30px;
+.food-card button{
   width:100%;
+  border:0;
+  padding:13px;
+  border-radius:30px;
+  background:var(--gold);
+  color:var(--deep);
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.buy-btn:hover{
+.food-card button:hover{
   opacity:.85;
 }
 
-/* ORDER BOX */
+/* CART */
 
-.order-box{
-  margin-top:45px;
+.cart{
   background:white;
-  padding:30px;
-  border-radius:22px;
+  max-width:800px;
+  margin:45px auto;
+  padding:25px;
+  border-radius:20px;
   border:1px solid #ead7bb;
   box-shadow:0 8px 25px #4d251414;
 }
 
-.order-box h2{
+.cart h2{
   color:var(--maroon);
-  margin-top:0;
 }
 
-.order-item{
+.cart-item{
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:15px;
   padding:15px 0;
   border-bottom:1px dashed #d9c3a7;
-  font-family:Arial,sans-serif;
 }
 
-.remove-btn{
-  background:#6e1820;
+.cart-item button{
+  border:0;
+  background:var(--maroon);
   color:white;
-  padding:6px 12px;
-  border-radius:20px;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  cursor:pointer;
 }
 
 .total{
@@ -171,62 +198,53 @@ button{
   margin-top:20px;
 }
 
-/* TABLE */
-
-.table-box{
-  margin-top:25px;
-}
-
-.table-box label{
-  display:block;
-  font-weight:bold;
-  margin-bottom:8px;
-}
-
-.table-box input{
+.order-btn{
   width:100%;
-  padding:14px;
-  border:1px solid #d9c3a7;
-  border-radius:10px;
-  font-size:16px;
-}
-
-/* PLACE ORDER */
-
-.place-order{
-  margin-top:25px;
-  width:100%;
+  margin-top:20px;
   padding:16px;
+  border:0;
   border-radius:30px;
   background:var(--maroon);
   color:white;
-  font-size:16px;
-}
-
-.place-order:hover{
-  background:#4d1016;
-}
-
-/* ORDER RESULT */
-
-.order-result{
-  display:none;
-  margin-top:25px;
-  padding:25px;
-  background:#fff8eb;
-  border:2px solid var(--gold);
-  border-radius:18px;
-  text-align:center;
-}
-
-.order-number{
-  font-size:2.5rem;
+  font-size:17px;
   font-weight:bold;
+  cursor:pointer;
+}
+
+.order-btn:hover{
+  opacity:.9;
+}
+
+.order-btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+/* ORDER SUCCESS */
+
+.success{
+  display:none;
+  max-width:700px;
+  margin:40px auto;
+  background:white;
+  padding:35px 20px;
+  text-align:center;
+  border-radius:25px;
+  border:2px solid var(--gold);
+}
+
+.success h2{
   color:var(--maroon);
 }
 
-.payment-note{
-  font-family:Arial,sans-serif;
+.order-number{
+  font-size:3rem;
+  font-weight:bold;
+  color:var(--gold);
+  margin:20px 0;
+}
+
+.success p{
   color:var(--muted);
   line-height:1.6;
 }
@@ -234,19 +252,18 @@ button{
 /* FOOTER */
 
 footer{
-  margin-top:50px;
-  background:#170707;
+  background:var(--deep);
   color:#d9c9bc;
   text-align:center;
   padding:25px;
-  font-family:Arial,sans-serif;
+  margin-top:50px;
 }
 
 /* MOBILE */
 
 @media(max-width:800px){
 
-  .menu-grid{
+  .food-grid{
     grid-template-columns:1fr 1fr;
   }
 
@@ -258,12 +275,12 @@ footer{
     font-size:2rem;
   }
 
-  .menu-grid{
+  .food-grid{
     grid-template-columns:1fr;
   }
 
-  .container{
-    padding:25px 15px;
+  .cart-item{
+    align-items:flex-start;
   }
 
 }
@@ -274,35 +291,63 @@ footer{
 
 <body>
 
+
 <!-- HEADER -->
 
 <header>
 
-<h1>Shere Punjab Restaurant</h1>
+<h1>
+Shere Punjab Restaurant
+</h1>
 
 <p>
-Kamal Chowk · Nagpur
-</p>
-
-<p>
-Scan • Select • Order • Collect Order Number
+Fresh Punjabi Snacks & Traditional Sweets
 </p>
 
 </header>
 
 
-<!-- MAIN -->
+<!-- TABLE NUMBER -->
 
-<div class="container">
+<div class="table-box">
 
-<h2 class="section-title">
-Our Menu
+<h2>
+🪑 Your Table
 </h2>
+
+<label>
+Enter your table number
+</label>
+
+<input
+type="number"
+id="tableNumber"
+placeholder="Example: 12"
+min="1"
+>
+
+
+</div>
 
 
 <!-- MENU -->
 
-<div class="menu-grid">
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+🍽️ Our Menu
+</h2>
+
+<p>
+Select your food and add it to your order.
+</p>
+
+</div>
+
+
+<div class="food-grid">
 
 
 <!-- SAMOSA -->
@@ -311,32 +356,61 @@ Our Menu
 
 <img
 src="Samosaimage.jpg"
-alt="Samosa">
+alt="Samosa"
+>
 
 <div class="food-info">
 
-<h3>🥟 Samosa</h3>
+<h3>
+🥟 Samosa
+</h3>
 
 <p>
 Crispy golden samosa with delicious filling.
 </p>
 
 <div class="price">
-₹40 Full · ₹25 Half
+₹40 Full
 </div>
 
 <button
-class="buy-btn"
-onclick="addItem('Samosa',40)">
-Add Full Samosa
+onclick="addToCart('Samosa Full',40)"
+>
+Add to Order
 </button>
 
-<br><br>
+</div>
+
+</div>
+
+
+<!-- SAMOSA HALF -->
+
+<div class="food-card">
+
+<img
+src="Samosaimage.jpg"
+alt="Samosa Half"
+>
+
+<div class="food-info">
+
+<h3>
+🥟 Samosa Half
+</h3>
+
+<p>
+Fresh crispy samosa.
+</p>
+
+<div class="price">
+₹25 Half
+</div>
 
 <button
-class="buy-btn"
-onclick="addItem('Samosa Half',25)">
-Add Half Samosa
+onclick="addToCart('Samosa Half',25)"
+>
+Add to Order
 </button>
 
 </div>
@@ -350,32 +424,95 @@ Add Half Samosa
 
 <img
 src="Kachoriimage.jpg"
-alt="Kachori">
+alt="Kachori"
+>
 
 <div class="food-info">
 
-<h3>🥮 Kachori</h3>
+<h3>
+🥮 Kachori
+</h3>
 
 <p>
-Crispy and tasty traditional Indian kachori.
+Crispy and tasty traditional kachori.
 </p>
 
 <div class="price">
-₹40 Full · ₹25 Half
+₹40 Full
 </div>
 
 <button
-class="buy-btn"
-onclick="addItem('Kachori',40)">
-Add Full Kachori
+onclick="addToCart('Kachori Full',40)"
+>
+Add to Order
 </button>
 
-<br><br>
+</div>
+
+</div>
+
+
+<!-- KACHORI HALF -->
+
+<div class="food-card">
+
+<img
+src="Kachoriimage.jpg"
+alt="Kachori Half"
+>
+
+<div class="food-info">
+
+<h3>
+🥮 Kachori Half
+</h3>
+
+<p>
+Fresh traditional kachori.
+</p>
+
+<div class="price">
+₹25 Half
+</div>
 
 <button
-class="buy-btn"
-onclick="addItem('Kachori Half',25)">
-Add Half Kachori
+onclick="addToCart('Kachori Half',25)"
+>
+Add to Order
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ALOO BONDHA -->
+
+<div class="food-card">
+
+<img
+src="Kachoriimage.jpg"
+alt="Aloo Bondha"
+>
+
+<div class="food-info">
+
+<h3>
+🥔 Aloo Bondha
+</h3>
+
+<p>
+Crispy potato snack.
+</p>
+
+<div class="price">
+₹40 Full
+</div>
+
+<button
+onclick="addToCart('Aloo Bondha Full',40)"
+>
+Add to Order
 </button>
 
 </div>
@@ -389,11 +526,14 @@ Add Half Kachori
 
 <img
 src="kajukatliimage.jpg"
-alt="Kaju Katli">
+alt="Kaju Katli"
+>
 
 <div class="food-info">
 
-<h3>🍬 Kaju Katli</h3>
+<h3>
+🍬 Kaju Katli
+</h3>
 
 <p>
 Premium traditional cashew sweet.
@@ -404,44 +544,9 @@ Premium traditional cashew sweet.
 </div>
 
 <button
-class="buy-btn"
-onclick="addItem('Kaju Katli 1 kg',1000)">
-Add 1 kg
-</button>
-
-</div>
-
-</div>
-
-
-<!-- ALOO BONDHA -->
-
-<div class="food-card">
-
-<div class="food-info">
-
-<h3>🥔 Aloo Bondha</h3>
-
-<p>
-Delicious traditional Indian snack.
-</p>
-
-<div class="price">
-₹40 Full · ₹25 Half
-</div>
-
-<button
-class="buy-btn"
-onclick="addItem('Aloo Bondha',40)">
-Add Full Aloo Bondha
-</button>
-
-<br><br>
-
-<button
-class="buy-btn"
-onclick="addItem('Aloo Bondha Half',25)">
-Add Half Aloo Bondha
+onclick="addToCart('Kaju Katli 1 kg',1000)"
+>
+Add to Order
 </button>
 
 </div>
@@ -453,12 +558,19 @@ Add Half Aloo Bondha
 
 <div class="food-card">
 
+<img
+src="kajukatliimage.jpg"
+alt="Santra Barfi"
+>
+
 <div class="food-info">
 
-<h3>🍊 Santra Barfi</h3>
+<h3>
+🍊 Santra Barfi
+</h3>
 
 <p>
-Traditional Nagpur-style orange flavoured sweet.
+Traditional Nagpur-style sweet.
 </p>
 
 <div class="price">
@@ -466,9 +578,9 @@ Traditional Nagpur-style orange flavoured sweet.
 </div>
 
 <button
-class="buy-btn"
-onclick="addItem('Santra Barfi 1 kg',700)">
-Add 1 kg
+onclick="addToCart('Santra Barfi 1 kg',700)"
+>
+Add to Order
 </button>
 
 </div>
@@ -479,191 +591,277 @@ Add 1 kg
 </div>
 
 
-<!-- ORDER -->
+<!-- CART -->
 
-<div class="order-box">
+<div class="cart">
 
 <h2>
 🛒 Your Order
 </h2>
 
-<div id="orderList">
+<div id="cartItems">
 
-<p style="font-family:Arial,sans-serif;color:#715e56;">
-No items added yet.
+<p>
+Your cart is empty.
 </p>
 
 </div>
 
-
 <div class="total">
 
-Total: ₹<span id="total">0</span>
+Total:
+₹<span id="total">0</span>
 
 </div>
 
-
-<!-- TABLE NUMBER -->
-
-<div class="table-box">
-
-<label for="tableNumber">
-Enter Table Number
-</label>
-
-<input
-type="number"
-id="tableNumber"
-placeholder="Example: 12"
-min="1">
-
-</div>
-
-
-<!-- PLACE ORDER -->
 
 <button
-class="place-order"
-onclick="placeOrder()">
+class="order-btn"
+id="placeOrder"
+onclick="placeOrder()"
+>
 
 PLACE ORDER
 
 </button>
 
+</div>
 
-<!-- RESULT -->
+
+<!-- SUCCESS -->
 
 <div
-class="order-result"
-id="orderResult">
+class="success"
+id="success"
+>
 
-<h3>
-✅ Order Placed
-</h3>
+<h2>
+✅ Order Placed!
+</h2>
 
 <p>
-Your Order Number is:
+Your order has been received by Shere Punjab Restaurant.
 </p>
 
-<div
-class="order-number"
-id="orderNumber">
+<div class="order-number" id="orderNumber">
+SP0000
 </div>
 
 <p>
-Please remember this order number.
+Please remember your order number.
 </p>
 
-<div class="payment-note">
-
+<p>
 <strong>
-Payment:
+💰 Payment:
 </strong>
 
-Please pay at the counter before eating.
+Pay at the counter before eating.
+</p>
 
-<br><br>
-
-Your order will be prepared by the restaurant
-after the order is received.
-
-</div>
-
-</div>
-
-</div>
+<p>
+Your food will be prepared and delivered to your table.
+</p>
 
 </div>
 
 
-<!-- FOOTER -->
+</div>
+
 
 <footer>
 
-© 2026 Shere Punjab Restaurant · Nagpur
+© 2026
+Shere Punjab Restaurant · Nagpur
 
 </footer>
 
 
-<script>
 
-/* ORDER DATA */
+<!-- FIREBASE + ORDER SYSTEM -->
+
+<script type="module">
+
+/* FIREBASE */
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* YOUR FIREBASE CONFIG */
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyCkcNYnZdMXa0Zbg5YGOLB-e1pDRXCPQxg",
+
+  authDomain:
+  "shere-punjab-ordering.firebaseapp.com",
+
+  projectId:
+  "shere-punjab-ordering",
+
+  storageBucket:
+  "shere-punjab-ordering.firebasestorage.app",
+
+  messagingSenderId:
+  "930249634762",
+
+  appId:
+  "1:930249634762:web:cea7dd0848bd39e9a3d533"
+
+};
+
+
+/* START FIREBASE */
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
+
+
+/* CART */
 
 let cart = [];
 
 
 /* ADD ITEM */
 
-function addItem(name,price){
+window.addToCart = function(name,price){
 
-  cart.push({
-    name:name,
-    price:price
-  });
-
-  updateOrder();
-
-}
+  const existing =
+    cart.find(item => item.name === name);
 
 
-/* REMOVE ITEM */
+  if(existing){
 
-function removeItem(index){
+    existing.quantity++;
 
-  cart.splice(index,1);
+  }else{
 
-  updateOrder();
+    cart.push({
 
-}
+      name:name,
+
+      price:price,
+
+      quantity:1
+
+    });
+
+  }
 
 
-/* UPDATE ORDER */
+  displayCart();
 
-function updateOrder(){
+};
 
-  const orderList =
-    document.getElementById("orderList");
+
+/* REMOVE ONE */
+
+window.removeFromCart = function(index){
+
+  if(cart[index].quantity > 1){
+
+    cart[index].quantity--;
+
+  }else{
+
+    cart.splice(index,1);
+
+  }
+
+
+  displayCart();
+
+};
+
+
+/* DISPLAY CART */
+
+function displayCart(){
+
+  const cartItems =
+    document.getElementById("cartItems");
 
   const totalElement =
     document.getElementById("total");
 
+
   if(cart.length === 0){
 
-    orderList.innerHTML =
-      '<p style="font-family:Arial,sans-serif;color:#715e56;">No items added yet.</p>';
+    cartItems.innerHTML =
+    "<p>Your cart is empty.</p>";
 
-    totalElement.innerText = "0";
+    totalElement.innerText =
+    "0";
 
     return;
 
   }
 
 
-  let total = 0;
-
   let html = "";
+
+  let total = 0;
 
 
   cart.forEach(function(item,index){
 
-    total += item.price;
+    const itemTotal =
+      item.price * item.quantity;
+
+    total += itemTotal;
+
 
     html += `
 
-      <div class="order-item">
+      <div class="cart-item">
 
-        <span>
-          ${item.name}
-          — ₹${item.price}
-        </span>
+        <div>
 
-        <button
-          class="remove-btn"
-          onclick="removeItem(${index})">
+          <strong>
+            ${item.name}
+          </strong>
 
-          Remove
+          <br>
 
-        </button>
+          ₹${item.price} × ${item.quantity}
+
+        </div>
+
+
+        <div>
+
+          <strong>
+            ₹${itemTotal}
+          </strong>
+
+          <br>
+
+          <button
+          onclick="removeFromCart(${index})">
+
+          −
+
+          </button>
+
+        </div>
 
       </div>
 
@@ -672,80 +870,175 @@ function updateOrder(){
   });
 
 
-  orderList.innerHTML = html;
+  cartItems.innerHTML =
+  html;
 
-  totalElement.innerText = total;
+  totalElement.innerText =
+  total;
+
+}
+
+
+/* GENERATE ORDER NUMBER */
+
+function generateOrderNumber(){
+
+  const random =
+    Math.floor(
+      1000 +
+      Math.random() * 9000
+    );
+
+  return "SP" + random;
 
 }
 
 
 /* PLACE ORDER */
 
-function placeOrder(){
+window.placeOrder = async function(){
+
+  const table =
+    document
+    .getElementById("tableNumber")
+    .value;
+
+
+  if(!table){
+
+    alert(
+      "Please enter your table number."
+    );
+
+    return;
+
+  }
+
 
   if(cart.length === 0){
 
-    alert("Please add at least one item.");
+    alert(
+      "Please add at least one item."
+    );
 
     return;
 
   }
 
-
-  const tableNumber =
-    document.getElementById("tableNumber").value;
-
-
-  if(tableNumber === ""){
-
-    alert("Please enter your table number.");
-
-    return;
-
-  }
-
-
-  /*
-    Temporary order number.
-
-    Later we will connect this
-    to the restaurant counter/kitchen.
-  */
 
   const orderNumber =
-    "SP" +
-    Math.floor(1000 + Math.random() * 9000);
+    generateOrderNumber();
 
 
-  document.getElementById("orderNumber")
-    .innerText = orderNumber;
+  let total = 0;
 
 
-  document.getElementById("orderResult")
-    .style.display = "block";
+  cart.forEach(function(item){
+
+    total +=
+      item.price *
+      item.quantity;
+
+  });
 
 
-  alert(
-    "Order placed successfully! Your order number is " +
-    orderNumber
-  );
+  const order = {
+
+    orderNumber:
+      orderNumber,
+
+    tableNumber:
+      Number(table),
+
+    items:
+      cart,
+
+    total:
+      total,
+
+    status:
+      "new",
+
+    payment:
+      "pending",
+
+    createdAt:
+      serverTimestamp()
+
+  };
 
 
-  /*
-    IMPORTANT:
+  const button =
+    document.getElementById(
+      "placeOrder"
+    );
 
-    At this stage the order is only
-    created inside the customer's browser.
 
-    In the next step we will connect
-    this page to the restaurant system
-    so the counter/kitchen can actually
-    receive the order.
-  */
+  button.disabled =
+    true;
 
-}
+  button.innerText =
+    "PLACING ORDER...";
+
+
+  try{
+
+    await addDoc(
+      collection(db,"orders"),
+      order
+    );
+
+
+    document
+    .getElementById(
+      "orderNumber"
+    )
+    .innerText =
+      orderNumber;
+
+
+    document
+    .getElementById(
+      "success"
+    )
+    .style.display =
+      "block";
+
+
+    document
+    .getElementById(
+      "success"
+    )
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+
+    cart = [];
+
+    displayCart();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Order could not be placed. Please try again."
+    );
+
+    button.disabled =
+      false;
+
+    button.innerText =
+      "PLACE ORDER";
+
+  }
+
+};
 
 </script>
+
 
 </body>
 
