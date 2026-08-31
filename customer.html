@@ -1,1 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Shere Punjab Restaurant | Order Online</title>
+
+<style>
+
+:root{
+  --maroon:#6e1820;
+  --deep:#260d0d;
+  --gold:#d9a441;
+  --cream:#fff8eb;
+  --ink:#2a1a16;
+  --muted:#715e56;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  color:var(--ink);
+  background:var(--cream);
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* HEADER */
+
+header{
+  background:#260d0d;
+  color:white;
+  text-align:center;
+  padding:35px 20px;
+}
+
+header h1{
+  margin:0;
+  font-size:2.5rem;
+}
+
+header p{
+  color:#ead9cc;
+  font-family:Arial,sans-serif;
+}
+
+/* MAIN */
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:35px 20px;
+}
+
+.section-title{
+  text-align:center;
+  color:var(--deep);
+  margin-bottom:30px;
+}
+
+/* MENU */
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+.food-card{
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid #ead7bb;
+  box-shadow:0 8px 25px #4d251414;
+}
+
+.food-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  display:block;
+}
+
+.food-info{
+  padding:20px;
+}
+
+.food-info h3{
+  margin:0 0 8px;
+  color:var(--maroon);
+}
+
+.food-info p{
+  font-family:Arial,sans-serif;
+  color:var(--muted);
+}
+
+.price{
+  color:var(--maroon);
+  font-weight:bold;
+  margin:12px 0;
+}
+
+/* BUTTON */
+
+button{
+  border:0;
+  cursor:pointer;
+  font-family:Arial,sans-serif;
+  font-weight:bold;
+}
+
+.buy-btn{
+  background:var(--gold);
+  color:#28110d;
+  padding:12px 20px;
+  border-radius:30px;
+  width:100%;
+}
+
+.buy-btn:hover{
+  opacity:.85;
+}
+
+/* ORDER BOX */
+
+.order-box{
+  margin-top:45px;
+  background:white;
+  padding:30px;
+  border-radius:22px;
+  border:1px solid #ead7bb;
+  box-shadow:0 8px 25px #4d251414;
+}
+
+.order-box h2{
+  color:var(--maroon);
+  margin-top:0;
+}
+
+.order-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  padding:15px 0;
+  border-bottom:1px dashed #d9c3a7;
+  font-family:Arial,sans-serif;
+}
+
+.remove-btn{
+  background:#6e1820;
+  color:white;
+  padding:6px 12px;
+  border-radius:20px;
+}
+
+.total{
+  text-align:right;
+  font-size:1.3rem;
+  font-weight:bold;
+  color:var(--maroon);
+  margin-top:20px;
+}
+
+/* TABLE */
+
+.table-box{
+  margin-top:25px;
+}
+
+.table-box label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.table-box input{
+  width:100%;
+  padding:14px;
+  border:1px solid #d9c3a7;
+  border-radius:10px;
+  font-size:16px;
+}
+
+/* PLACE ORDER */
+
+.place-order{
+  margin-top:25px;
+  width:100%;
+  padding:16px;
+  border-radius:30px;
+  background:var(--maroon);
+  color:white;
+  font-size:16px;
+}
+
+.place-order:hover{
+  background:#4d1016;
+}
+
+/* ORDER RESULT */
+
+.order-result{
+  display:none;
+  margin-top:25px;
+  padding:25px;
+  background:#fff8eb;
+  border:2px solid var(--gold);
+  border-radius:18px;
+  text-align:center;
+}
+
+.order-number{
+  font-size:2.5rem;
+  font-weight:bold;
+  color:var(--maroon);
+}
+
+.payment-note{
+  font-family:Arial,sans-serif;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* FOOTER */
+
+footer{
+  margin-top:50px;
+  background:#170707;
+  color:#d9c9bc;
+  text-align:center;
+  padding:25px;
+  font-family:Arial,sans-serif;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .menu-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:600px){
+
+  header h1{
+    font-size:2rem;
+  }
+
+  .menu-grid{
+    grid-template-columns:1fr;
+  }
+
+  .container{
+    padding:25px 15px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<h1>Shere Punjab Restaurant</h1>
+
+<p>
+Kamal Chowk · Nagpur
+</p>
+
+<p>
+Scan • Select • Order • Collect Order Number
+</p>
+
+</header>
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+<h2 class="section-title">
+Our Menu
+</h2>
+
+
+<!-- MENU -->
+
+<div class="menu-grid">
+
+
+<!-- SAMOSA -->
+
+<div class="food-card">
+
+<img
+src="Samosaimage.jpg"
+alt="Samosa">
+
+<div class="food-info">
+
+<h3>🥟 Samosa</h3>
+
+<p>
+Crispy golden samosa with delicious filling.
+</p>
+
+<div class="price">
+₹40 Full · ₹25 Half
+</div>
+
+<button
+class="buy-btn"
+onclick="addItem('Samosa',40)">
+Add Full Samosa
+</button>
+
+<br><br>
+
+<button
+class="buy-btn"
+onclick="addItem('Samosa Half',25)">
+Add Half Samosa
+</button>
+
+</div>
+
+</div>
+
+
+<!-- KACHORI -->
+
+<div class="food-card">
+
+<img
+src="Kachoriimage.jpg"
+alt="Kachori">
+
+<div class="food-info">
+
+<h3>🥮 Kachori</h3>
+
+<p>
+Crispy and tasty traditional Indian kachori.
+</p>
+
+<div class="price">
+₹40 Full · ₹25 Half
+</div>
+
+<button
+class="buy-btn"
+onclick="addItem('Kachori',40)">
+Add Full Kachori
+</button>
+
+<br><br>
+
+<button
+class="buy-btn"
+onclick="addItem('Kachori Half',25)">
+Add Half Kachori
+</button>
+
+</div>
+
+</div>
+
+
+<!-- KAJU KATLI -->
+
+<div class="food-card">
+
+<img
+src="kajukatliimage.jpg"
+alt="Kaju Katli">
+
+<div class="food-info">
+
+<h3>🍬 Kaju Katli</h3>
+
+<p>
+Premium traditional cashew sweet.
+</p>
+
+<div class="price">
+₹1,000 / kg
+</div>
+
+<button
+class="buy-btn"
+onclick="addItem('Kaju Katli 1 kg',1000)">
+Add 1 kg
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ALOO BONDHA -->
+
+<div class="food-card">
+
+<div class="food-info">
+
+<h3>🥔 Aloo Bondha</h3>
+
+<p>
+Delicious traditional Indian snack.
+</p>
+
+<div class="price">
+₹40 Full · ₹25 Half
+</div>
+
+<button
+class="buy-btn"
+onclick="addItem('Aloo Bondha',40)">
+Add Full Aloo Bondha
+</button>
+
+<br><br>
+
+<button
+class="buy-btn"
+onclick="addItem('Aloo Bondha Half',25)">
+Add Half Aloo Bondha
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SANTRA BARFI -->
+
+<div class="food-card">
+
+<div class="food-info">
+
+<h3>🍊 Santra Barfi</h3>
+
+<p>
+Traditional Nagpur-style orange flavoured sweet.
+</p>
+
+<div class="price">
+₹700 / kg
+</div>
+
+<button
+class="buy-btn"
+onclick="addItem('Santra Barfi 1 kg',700)">
+Add 1 kg
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- ORDER -->
+
+<div class="order-box">
+
+<h2>
+🛒 Your Order
+</h2>
+
+<div id="orderList">
+
+<p style="font-family:Arial,sans-serif;color:#715e56;">
+No items added yet.
+</p>
+
+</div>
+
+
+<div class="total">
+
+Total: ₹<span id="total">0</span>
+
+</div>
+
+
+<!-- TABLE NUMBER -->
+
+<div class="table-box">
+
+<label for="tableNumber">
+Enter Table Number
+</label>
+
+<input
+type="number"
+id="tableNumber"
+placeholder="Example: 12"
+min="1">
+
+</div>
+
+
+<!-- PLACE ORDER -->
+
+<button
+class="place-order"
+onclick="placeOrder()">
+
+PLACE ORDER
+
+</button>
+
+
+<!-- RESULT -->
+
+<div
+class="order-result"
+id="orderResult">
+
+<h3>
+✅ Order Placed
+</h3>
+
+<p>
+Your Order Number is:
+</p>
+
+<div
+class="order-number"
+id="orderNumber">
+</div>
+
+<p>
+Please remember this order number.
+</p>
+
+<div class="payment-note">
+
+<strong>
+Payment:
+</strong>
+
+Please pay at the counter before eating.
+
+<br><br>
+
+Your order will be prepared by the restaurant
+after the order is received.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+© 2026 Shere Punjab Restaurant · Nagpur
+
+</footer>
+
+
+<script>
+
+/* ORDER DATA */
+
+let cart = [];
+
+
+/* ADD ITEM */
+
+function addItem(name,price){
+
+  cart.push({
+    name:name,
+    price:price
+  });
+
+  updateOrder();
+
+}
+
+
+/* REMOVE ITEM */
+
+function removeItem(index){
+
+  cart.splice(index,1);
+
+  updateOrder();
+
+}
+
+
+/* UPDATE ORDER */
+
+function updateOrder(){
+
+  const orderList =
+    document.getElementById("orderList");
+
+  const totalElement =
+    document.getElementById("total");
+
+  if(cart.length === 0){
+
+    orderList.innerHTML =
+      '<p style="font-family:Arial,sans-serif;color:#715e56;">No items added yet.</p>';
+
+    totalElement.innerText = "0";
+
+    return;
+
+  }
+
+
+  let total = 0;
+
+  let html = "";
+
+
+  cart.forEach(function(item,index){
+
+    total += item.price;
+
+    html += `
+
+      <div class="order-item">
+
+        <span>
+          ${item.name}
+          — ₹${item.price}
+        </span>
+
+        <button
+          class="remove-btn"
+          onclick="removeItem(${index})">
+
+          Remove
+
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+
+  orderList.innerHTML = html;
+
+  totalElement.innerText = total;
+
+}
+
+
+/* PLACE ORDER */
+
+function placeOrder(){
+
+  if(cart.length === 0){
+
+    alert("Please add at least one item.");
+
+    return;
+
+  }
+
+
+  const tableNumber =
+    document.getElementById("tableNumber").value;
+
+
+  if(tableNumber === ""){
+
+    alert("Please enter your table number.");
+
+    return;
+
+  }
+
+
+  /*
+    Temporary order number.
+
+    Later we will connect this
+    to the restaurant counter/kitchen.
+  */
+
+  const orderNumber =
+    "SP" +
+    Math.floor(1000 + Math.random() * 9000);
+
+
+  document.getElementById("orderNumber")
+    .innerText = orderNumber;
+
+
+  document.getElementById("orderResult")
+    .style.display = "block";
+
+
+  alert(
+    "Order placed successfully! Your order number is " +
+    orderNumber
+  );
+
+
+  /*
+    IMPORTANT:
+
+    At this stage the order is only
+    created inside the customer's browser.
+
+    In the next step we will connect
+    this page to the restaurant system
+    so the counter/kitchen can actually
+    receive the order.
+  */
+
+}
+
+</script>
+
+</body>
+
+</html>
