@@ -1,1 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Shere Punjab Restaurant | Kitchen</title>
+
+<style>
+
+:root{
+  --maroon:#6e1820;
+  --deep:#260d0d;
+  --gold:#d9a441;
+  --cream:#fff8eb;
+  --ink:#2a1a16;
+  --muted:#715e56;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:Arial,sans-serif;
+}
+
+/* HEADER */
+
+header{
+  background:var(--deep);
+  color:white;
+  padding:25px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+header h1{
+  margin:0;
+  font-family:Georgia,serif;
+}
+
+.status{
+  background:var(--gold);
+  color:var(--deep);
+  padding:10px 18px;
+  border-radius:30px;
+  font-weight:bold;
+}
+
+/* MAIN */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:35px 20px;
+}
+
+.intro{
+  background:white;
+  border:1px solid #ead7bb;
+  border-radius:20px;
+  padding:25px;
+  margin-bottom:30px;
+}
+
+.intro h2{
+  color:var(--maroon);
+  margin-top:0;
+}
+
+.intro p{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* ORDERS */
+
+.orders{
+  display:grid;
+  gap:20px;
+}
+
+.order-card{
+  background:white;
+  border:1px solid #ead7bb;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 8px 25px #4d251414;
+}
+
+.order-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+  border-bottom:2px solid #ead7bb;
+  padding-bottom:15px;
+}
+
+.order-number{
+  color:var(--maroon);
+  font-size:1.8rem;
+  font-weight:bold;
+}
+
+.table{
+  background:#fff8eb;
+  color:var(--maroon);
+  padding:10px 16px;
+  border-radius:25px;
+  font-weight:bold;
+}
+
+.items{
+  margin:20px 0;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  padding:14px 0;
+  border-bottom:1px dashed #d9c3a7;
+  font-size:17px;
+}
+
+.item:last-child{
+  border-bottom:0;
+}
+
+.prepare-btn{
+  width:100%;
+  padding:16px;
+  background:var(--maroon);
+  color:white;
+  border:0;
+  border-radius:30px;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.prepare-btn:hover{
+  opacity:.85;
+}
+
+.ready-btn{
+  width:100%;
+  padding:16px;
+  margin-top:10px;
+  background:var(--gold);
+  color:var(--deep);
+  border:0;
+  border-radius:30px;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.ready-btn:hover{
+  opacity:.85;
+}
+
+/* EMPTY */
+
+.empty{
+  text-align:center;
+  background:white;
+  padding:50px 20px;
+  border-radius:20px;
+  color:var(--muted);
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  header{
+    flex-direction:column;
+    gap:15px;
+    text-align:center;
+  }
+
+  .item{
+    font-size:15px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>
+Shere Punjab Restaurant
+</h1>
+
+<div class="status">
+KITCHEN
+</div>
+
+</header>
+
+
+<div class="container">
+
+<div class="intro">
+
+<h2>
+👨‍🍳 Kitchen Orders
+</h2>
+
+<p>
+Orders received from customers will appear here.
+Prepare the food and send it to the customer's table.
+</p>
+
+</div>
+
+
+<div id="orders" class="orders">
+
+<div class="empty">
+
+<h2>
+No orders yet
+</h2>
+
+<p>
+Waiting for orders...
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/*
+  TEMPORARY KITCHEN DEMO
+
+  These orders are examples so you can
+  see how the kitchen screen will look.
+
+  Later, server.js will connect the
+  customer page, counter page and
+  kitchen page together.
+*/
+
+
+let kitchenOrders = [
+
+{
+  number:"SP1024",
+  table:"12",
+
+  items:[
+    {
+      name:"Samosa",
+      quantity:2
+    },
+
+    {
+      name:"Kachori",
+      quantity:1
+    },
+
+    {
+      name:"Kaju Katli",
+      quantity:1
+    }
+  ]
+},
+
+{
+  number:"SP5831",
+  table:"7",
+
+  items:[
+    {
+      name:"Samosa Half",
+      quantity:2
+    },
+
+    {
+      name:"Santra Barfi",
+      quantity:1
+    }
+  ]
+}
+
+];
+
+
+/* DISPLAY ORDERS */
+
+function displayOrders(){
+
+  const container =
+    document.getElementById("orders");
+
+
+  if(kitchenOrders.length === 0){
+
+    container.innerHTML = `
+
+      <div class="empty">
+
+        <h2>No orders yet</h2>
+
+        <p>
+        Waiting for orders...
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = "";
+
+
+  kitchenOrders.forEach(function(order){
+
+    let itemsHTML = "";
+
+
+    order.items.forEach(function(item){
+
+      itemsHTML += `
+
+        <div class="item">
+
+          <strong>
+            ${item.name}
+          </strong>
+
+          <span>
+            × ${item.quantity}
+          </span>
+
+        </div>
+
+      `;
+
+    });
+
+
+    container.innerHTML += `
+
+      <div class="order-card">
+
+        <div class="order-header">
+
+          <div>
+
+            <div>
+              ORDER NUMBER
+            </div>
+
+            <div class="order-number">
+              ${order.number}
+            </div>
+
+          </div>
+
+          <div class="table">
+            🪑 Table ${order.table}
+          </div>
+
+        </div>
+
+
+        <div class="items">
+
+          ${itemsHTML}
+
+        </div>
+
+
+        <button
+          class="prepare-btn"
+          onclick="startPreparing('${order.number}')">
+
+          👨‍🍳 START PREPARING
+
+        </button>
+
+
+        <button
+          class="ready-btn"
+          onclick="markReady('${order.number}')">
+
+          ✅ FOOD READY
+
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+
+/* START PREPARING */
+
+function startPreparing(number){
+
+  alert(
+    "Kitchen started preparing Order " +
+    number
+  );
+
+}
+
+
+/* FOOD READY */
+
+function markReady(number){
+
+  alert(
+    "Order " +
+    number +
+    " is ready. Deliver it to the table."
+  );
+
+}
+
+
+displayOrders();
+
+</script>
+
+</body>
+
+</html>
